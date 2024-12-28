@@ -25,7 +25,7 @@ public class JwtServiceImpl implements JwtService {
                 .setSubject(String.valueOf(userId))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(expitationDate)
-                .signWith(SignatureAlgorithm.ES512, this.secretToken)
+                .signWith(SignatureAlgorithm.HS512, this.secretToken.getBytes()) // Cambia a HS512 y usa bytes
                 .compact();
         return TokenResponse.builder()
                 .accesToken(token)
@@ -37,7 +37,7 @@ public class JwtServiceImpl implements JwtService {
         return Jwts.parserBuilder()
                 .setSigningKey(this.secretToken)
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 

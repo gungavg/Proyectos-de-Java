@@ -25,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
         return Optional.of(userRequest)
                 .map(this::mapToEntity)
                 .map(userRepository::save)
-                .map(userCreated -> jwtService.generateToken(userCreated.getId()))
+                .map(userCreated -> jwtService.generateToken(userCreated.getUserId()))
                 .orElseThrow(()-> new RuntimeException("Error creating user"));
 
     }
@@ -34,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
                 .email(userRequest.getEmail())
                 .password(userRequest.getPassword())
                 .name(userRequest.getName())
+                .role("USER")
                 .build();
 
     }
