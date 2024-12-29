@@ -29,6 +29,28 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(()-> new RuntimeException("Error creating user"));
 
     }
+
+    @Override
+    public TokenResponse login(String email, String password){
+        return userRepository.findByEmail(email)
+                .filter((user -> user.getPassword().matches(password) ))
+                .map(user -> jwtService.generateToken(user.getUserId()))
+                .orElseThrow(() -> new RuntimeException("Invalid credentials"));
+    }
+
+
+
+
+    @Override
+    public TokenResponse deleteUser(String email) {
+        return userRepository.findByEmail(email)
+                .map(user -> {
+                    userRepository.delete(user);
+                    return new TokenResponse("User deleted successfully"); // Reemplaza con tu lógica para TokenResponse
+                })
+                .orElseThrow(() -> new RuntimeException("Error: couldn't delete that item"));
+    }
+
     private UserModel mapToEntity(UserRequest userRequest){
         return UserModel.builder()
                 .email(userRequest.getEmail())

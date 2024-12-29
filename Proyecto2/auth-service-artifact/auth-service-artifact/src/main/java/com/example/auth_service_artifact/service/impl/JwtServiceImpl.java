@@ -14,7 +14,7 @@ import java.util.Date;
 public class JwtServiceImpl implements JwtService {
     private  final String secretToken;
 
-    public JwtServiceImpl(@Value("${jwt.secret}") String secretToken) {
+    public JwtServiceImpl(@Value("${jwt.secret:jjdasndjnaskjdnuasdnjkndaskjndajksndkjajasfasdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfd}") String secretToken) {
         this.secretToken = secretToken;
     }
 
@@ -25,7 +25,7 @@ public class JwtServiceImpl implements JwtService {
                 .setSubject(String.valueOf(userId))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(expitationDate)
-                .signWith(SignatureAlgorithm.HS512, this.secretToken.getBytes()) // Cambia a HS512 y usa bytes
+                .signWith(SignatureAlgorithm.HS512, this.secretToken)
                 .compact();
         return TokenResponse.builder()
                 .accesToken(token)
@@ -44,6 +44,7 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public boolean isExpired(String token) {
         try{
+
             return getClaims(token).getExpiration().before(new Date());
 
         }catch (Exception e){
