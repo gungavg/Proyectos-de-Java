@@ -8,8 +8,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-  jwt:
-    secret: jjdasndjnaskjdnuasdnjkndaskjndajksndkjajasfasdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfd
+jwt:
+  secret: jjdasndjnaskjdnuasdnjkndaskjndajksndkjajasfasdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfd
 springdoc:
   api-docs:
     path: /v1/api-docs

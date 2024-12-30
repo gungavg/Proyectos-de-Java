@@ -1,6 +1,7 @@
 package com.example.auth_service_artifact.controller;
 
 import com.example.auth_service_artifact.comons.constants.ApiPathConstants;
+import com.example.auth_service_artifact.comons.dtos.LoginRequest;
 import com.example.auth_service_artifact.comons.dtos.TokenResponse;
 import com.example.auth_service_artifact.comons.dtos.UserRequest;
 import jakarta.validation.Valid;
@@ -13,18 +14,12 @@ public interface AuthApi {
     ResponseEntity<TokenResponse> createUser(
             @RequestBody @Valid UserRequest userRequest
     );
-    @GetMapping(value= "/login")
+    @PostMapping(value = "/login")
     ResponseEntity<TokenResponse> login(
-            @RequestParam @Valid String mail,
-            @RequestParam String password
-    );
-    @DeleteMapping(value = "/{mail}")
-    ResponseEntity<Void>deleteUser(
-            @RequestParam @Valid String mail
+            @RequestBody @Valid LoginRequest loginRequest
     );
 
-    /*@PutMapping(value = "/{mail}")
-    ResponseEntity<Void> updateUser(String mail, UserRequest userRequest);
-*/
+
+
 
 }

@@ -1,6 +1,7 @@
 package com.example.auth_service_artifact.controller;
 
 
+import com.example.auth_service_artifact.comons.dtos.LoginRequest;
 import com.example.auth_service_artifact.comons.dtos.TokenResponse;
 import com.example.auth_service_artifact.comons.dtos.UserRequest;
 import com.example.auth_service_artifact.service.AuthService;
@@ -22,22 +23,13 @@ public class AuthController implements AuthApi{
     }
 
     @Override
-    public ResponseEntity<TokenResponse> login(String mail, String password) {
-        return ResponseEntity.ok(authService.login(mail,password));
+    public ResponseEntity<TokenResponse> login(LoginRequest loginRequest) {
+        return ResponseEntity.ok(authService.login(loginRequest));
     }
 
-    @Override
-    public ResponseEntity<Void> deleteUser(String mail) {
-        authService.deleteUser(mail);
-        return ResponseEntity.noContent().build();
-    }
 
-    /*@Override
-    public ResponseEntity<Void> updateUser(String mail, UserRequest userRequest) {
-        authService.updateUser(mail,userRequest);
-        return ResponseEntity.noContent().build();
-    }
-*/
+
+
 
 
 }

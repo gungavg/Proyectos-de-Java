@@ -14,7 +14,7 @@ import java.util.Date;
 public class JwtServiceImpl implements JwtService {
     private  final String secretToken;
 
-    public JwtServiceImpl(@Value("${jwt.secret:jjdasndjnaskjdnuasdnjkndaskjndajksndkjajasfasdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfd}") String secretToken) {
+    public JwtServiceImpl(@Value("${jwt.secret}") String secretToken) {
         this.secretToken = secretToken;
     }
 
