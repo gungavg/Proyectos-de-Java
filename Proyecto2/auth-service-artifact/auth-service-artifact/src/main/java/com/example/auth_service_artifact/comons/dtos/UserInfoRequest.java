@@ -8,5 +8,5 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class UserInfoRequest {
-    private String email;
+    private Long userId;
 }
