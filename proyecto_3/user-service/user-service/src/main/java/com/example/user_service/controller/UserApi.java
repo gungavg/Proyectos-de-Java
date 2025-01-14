@@ -1,9 +1,8 @@
-package com.example.auth_service_artifact.controller;
-
-import com.example.auth_service_artifact.comons.constants.ApiPathConstants;
-import com.example.auth_service_artifact.comons.dtos.UpdateUserRequest;
-import com.example.auth_service_artifact.comons.dtos.UserInfoRequest;
-import com.example.auth_service_artifact.comons.entities.UserModel;
+package com.example.user_service.controller;
+import com.example.user_service.commons.constants.ApiPathConstants;
+import com.example.user_service.commons.dtos.UpdateUserRequest;
+import com.example.user_service.commons.dtos.UserInfoRequest;
+import com.example.common_library.entities.UserModel;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.apache.catalina.User;
 import org.springframework.http.ResponseEntity;
@@ -22,12 +21,12 @@ public interface UserApi {
     @DeleteMapping(value= "/deleteUser")
     ResponseEntity<UserModel>deleteUser(
             @RequestBody UserInfoRequest userInfoRequest
-            );
+    );
 
     @PutMapping()
     ResponseEntity<UserModel>updateUser(
             @RequestAttribute("X-User-Id") Long userId,
             @RequestBody UpdateUserRequest updateUserRequest
-            );
+    );
 
 }
