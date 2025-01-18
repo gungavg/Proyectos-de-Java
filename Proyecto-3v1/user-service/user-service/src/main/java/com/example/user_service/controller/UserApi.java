@@ -16,6 +16,8 @@ import com.example.common_library.entities.UserModel;
 public interface UserApi {
     @GetMapping()
     ResponseEntity<UserModel> getUser(
+
+
             @RequestAttribute("X-User-Id") Long userId
     );
 

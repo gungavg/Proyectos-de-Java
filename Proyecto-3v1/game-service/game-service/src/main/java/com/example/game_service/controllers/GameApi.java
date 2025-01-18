@@ -14,15 +14,18 @@ import org.springframework.web.bind.annotation.*;
 public interface GameApi {
     @GetMapping()
     ResponseEntity< GameModel > getGame(
+            @RequestHeader("userIdRequest") String userId,
             @RequestAttribute("X-Game-Id") Long gameId
     );
     @DeleteMapping(value = "/deleteGame")
     ResponseEntity<GameModel> deleteUser(
+            @RequestHeader("userIdRequest") String userId,
             @RequestBody GameInfoRequest gameInfoRequest
     );
 
     @PutMapping()
     ResponseEntity<GameModel> updateGame(
+            @RequestHeader("userIdRequest") String userId,
             @RequestAttribute("X-Game-Id") Long gameId,
             @RequestBody UpdateGameRequest updateGameRequest
             );

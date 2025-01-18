@@ -9,4 +9,5 @@ import lombok.*;
 @Builder
 public class GameInfoRequest {
     private Long gameId;
+
 }
