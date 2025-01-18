@@ -60,5 +60,9 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
         return !request.getHeaders().containsKey("Authorization");
     }
 
-    public static class Config{}
+    public static class Config{
+        public Config() {
+        }
+
+    }
 }

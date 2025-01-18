@@ -4,17 +4,17 @@ spring:
       routes:
         - id: auth-route
           uri: http://localhost:8080
-          predicate:
+          predicates:
             - Path=/v1/auth/**
         - id: user-route
           uri: https://localhost:8081
-          predicate:
+          predicates:
             - Path=/v1/user/**
           filters:
             - AuthenticationFilter
         - id: games-route
           uri: https://localhost:8082
-          predicate:
+          predicates:
             -Path=/v1/games/**
           filters:
             -AuthenticationFilter
