@@ -18,7 +18,7 @@ public interface GameApi {
             @RequestAttribute("X-Game-Id") Long gameId
     );
     @DeleteMapping(value = "/deleteGame")
-    ResponseEntity<GameModel> deleteUser(
+    ResponseEntity<GameModel> deleteGame(
             @RequestHeader("userIdRequest") String userId,
             @RequestBody GameInfoRequest gameInfoRequest
     );

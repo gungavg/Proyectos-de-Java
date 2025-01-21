@@ -5,13 +5,14 @@ import com.example.game_service.commons.dtos.GameInfoRequest;
 import com.example.game_service.commons.dtos.UpdateGameRequest;
 import com.example.game_service.repository.GameRepository;
 import com.example.game_service.service.GameService;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
-public class UserServiceImpl  implements GameService {
+@Service
+public class GameServiceImpl implements GameService {
     private final GameRepository gameRepository;
 
-    public UserServiceImpl(GameRepository gameRepository) {
+    public GameServiceImpl(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
 
@@ -32,12 +33,12 @@ public class UserServiceImpl  implements GameService {
 
     @Override
     public UpdateGameRequest updateGame(Long gameId, UpdateGameRequest updateGameRequest) {
-        return Optional.of(gameId)
+        Optional.of(gameId)
                 .map(this::getGame)
                 .map(existingGame -> updateGameFields(existingGame, updateGameRequest))
                 .map(gameRepository::save)
-                .map(updatedGame -> mapToUpdateGameRequest(updatedGame))
                 .orElseThrow(() -> new RuntimeException("Game can't be updated"));
+        return  updateGameRequest;
     }
 
     private GameModel updateGameFields(GameModel existingGame, UpdateGameRequest updateGameRequest) {
@@ -45,10 +46,6 @@ public class UserServiceImpl  implements GameService {
         return existingGame;
     }
 
-    private UpdateGameRequest mapToUpdateGameRequest(GameModel gameModel) {
-        UpdateGameRequest updateGameRequest = new UpdateGameRequest();
-        updateGameRequest.setName(gameModel.getName());
-        return updateGameRequest;
-    }
+
 
 }

@@ -22,7 +22,7 @@ public class GameControllerImpl implements GameApi {
     }
 
     @Override
-    public ResponseEntity<GameModel> deleteUser(String userId, GameInfoRequest gameInfoRequest) {
+    public ResponseEntity<GameModel> deleteGame(String userId, GameInfoRequest gameInfoRequest) {
         return ResponseEntity.noContent().build();
     }
 

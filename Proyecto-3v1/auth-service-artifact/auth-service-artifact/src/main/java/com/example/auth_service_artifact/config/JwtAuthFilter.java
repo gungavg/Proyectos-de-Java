@@ -1,8 +1,9 @@
 package com.example.auth_service_artifact.config;
 
-import com.example.auth_service_artifact.comons.entities.UserModel;
+//import com.example.auth_service_artifact.comons.entities.UserModel;
 import com.example.auth_service_artifact.repositories.UserRepository;
 import com.example.auth_service_artifact.service.JwtService;
+import com.example.common_library.entities.UserModel;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

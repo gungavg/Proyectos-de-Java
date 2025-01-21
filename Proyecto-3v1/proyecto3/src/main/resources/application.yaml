@@ -7,7 +7,7 @@ spring:
           predicates:
             - Path=/v1/auth/**
         - id: user-route
-          uri: https://localhost:8081
+          uri: http://localhost:8081
           predicates:
             - Path=/v1/user/**
           filters:
