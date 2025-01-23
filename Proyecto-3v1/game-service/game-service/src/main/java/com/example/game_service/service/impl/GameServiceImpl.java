@@ -1,6 +1,7 @@
 package com.example.game_service.service.impl;
 
 import com.example.game_service.commons.constants.GameModel;
+import com.example.game_service.commons.dtos.CreateGameModel;
 import com.example.game_service.commons.dtos.GameInfoRequest;
 import com.example.game_service.commons.dtos.UpdateGameRequest;
 import com.example.game_service.repository.GameRepository;
@@ -14,6 +15,29 @@ public class GameServiceImpl implements GameService {
 
     public GameServiceImpl(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
+    }
+
+
+
+    private GameModel mapToEntity(GameModel gameRequest){
+        return  GameModel.builder()
+                .name(gameRequest.getName())
+                .build();
+
+    }
+
+
+    private GameModel mapToEntity2(CreateGameModel gameRequest) {
+        return GameModel.builder()
+                .name(gameRequest.getName())
+                .build();
+    }
+
+    @Override
+    public CreateGameModel createGame(CreateGameModel createGameModel) {
+        GameModel gameEntity = mapToEntity2(createGameModel);
+        GameModel savedEntity = gameRepository.save(gameEntity);
+        return new CreateGameModel(savedEntity.getName());
     }
 
     @Override

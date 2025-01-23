@@ -1,6 +1,7 @@
 package com.example.game_service.controllers.impl;
 
 import com.example.game_service.commons.constants.GameModel;
+import com.example.game_service.commons.dtos.CreateGameModel;
 import com.example.game_service.commons.dtos.GameInfoRequest;
 import com.example.game_service.commons.dtos.UpdateGameRequest;
 import com.example.game_service.controllers.GameApi;
@@ -15,6 +16,13 @@ public class GameControllerImpl implements GameApi {
     public GameControllerImpl(GameService gameService) {
         this.gameService = gameService;
     }
+
+
+    @Override
+    public ResponseEntity<CreateGameModel> createGame(String userId, CreateGameModel createGameModel) {
+        return ResponseEntity.ok(gameService.createGame( createGameModel));
+    }
+
 
     @Override
     public ResponseEntity<GameModel> getGame(String userId, Long gameId) {
