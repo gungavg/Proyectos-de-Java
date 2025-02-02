@@ -13,4 +13,5 @@ public class UpdateGameRequest {
     @NotNull
     private String name;
 
+
 }

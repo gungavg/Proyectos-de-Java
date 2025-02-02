@@ -2,12 +2,12 @@ package com.example.game_service.commons.dtos;
 
 import lombok.*;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
-public class GameInfoRequest {
-    private String userId;
-
+public class GameRequest {
+    @NonNull
+    private String gameName;
 }

@@ -1,8 +1,8 @@
 package com.example.game_service.controllers.impl;
 
 import com.example.game_service.commons.constants.GameModel;
-import com.example.game_service.commons.dtos.CreateGameModel;
 import com.example.game_service.commons.dtos.GameInfoRequest;
+import com.example.game_service.commons.dtos.GameRequest;
 import com.example.game_service.commons.dtos.UpdateGameRequest;
 import com.example.game_service.controllers.GameApi;
 import com.example.game_service.service.GameService;
@@ -13,20 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class GameControllerImpl implements GameApi {
     private final GameService gameService;
 
-    public GameControllerImpl(GameService gameService) {
-        this.gameService = gameService;
-    }
-
 
     @Override
-    public ResponseEntity<CreateGameModel> createGame(String userId, CreateGameModel createGameModel) {
-        return ResponseEntity.ok(gameService.createGame( createGameModel));
+    public ResponseEntity<GameModel> createGame(String userId, GameRequest gameRequest) {
+        return ResponseEntity.ok(gameService.createGame(gameRequest, userId));
     }
 
-
     @Override
-    public ResponseEntity<GameModel> getGame(String userId, Long gameId) {
-        return ResponseEntity.ok(gameService.getGame(gameId));
+    public ResponseEntity<GameModel> getGame(String userId) {
+        return ResponseEntity.ok(gameService.getGame(userId));
     }
 
     @Override
@@ -35,8 +30,21 @@ public class GameControllerImpl implements GameApi {
     }
 
     @Override
-    public ResponseEntity<GameModel> updateGame(String userId, Long gameId, UpdateGameRequest updateGameRequest) {
-        gameService.updateGame(gameId, updateGameRequest);
+    public ResponseEntity<GameModel> updateGame(String userId, UpdateGameRequest updateGameRequest) {
+        gameService.updateGame(userId, updateGameRequest);
         return ResponseEntity.noContent().build();
     }
+
+    public GameControllerImpl(GameService gameService) {
+        this.gameService = gameService;
+    }
+
+
+
+
+
+
+
+
+
 }
