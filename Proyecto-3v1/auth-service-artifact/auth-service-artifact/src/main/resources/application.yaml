@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/Proyecto3
+    url: jdbc:postgresql://localhost:5432/test
     username: postgres
     password: 1234
   jpa:
