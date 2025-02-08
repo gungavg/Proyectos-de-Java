@@ -54,7 +54,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     private Mono<Void> onError(ServerWebExchange exchange, HttpStatus httpStatus) {
         ServerHttpResponse response = exchange.getResponse();
         response.setStatusCode(httpStatus);
-        return  response.setComplete();
+        return  null;
     }
 
     private boolean authMissing(ServerHttpRequest request) {
