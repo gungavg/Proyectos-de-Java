@@ -14,9 +14,11 @@ import java.util.Optional;
 @Service
 public class GameServiceImpl implements GameService {
     private final GameRepository gameRepository;
+    private final StreamBridge streamBridge;
 
-    public GameServiceImpl(GameRepository gameRepository) {
+    public GameServiceImpl(GameRepository gameRepository, StreamBridge streamBridge) {
         this.gameRepository = gameRepository;
+        this.streamBridge = streamBridge;
     }
 
     @Override
@@ -24,7 +26,16 @@ public class GameServiceImpl implements GameService {
         return Optional.of(createGame)
                 .map(game -> mapToEntity(userId,createGame))
                 .map(gameRepository::save)
+                .map(this :: sendGameEvent)
                 .orElseThrow(()-> new RuntimeException("Error creating the game"));
+    }
+
+
+    private GameModel sendGameEvent(GameModel gameModel){
+        Optional.of(gameModel)
+                .map(givenGame -> this.streamBridge.send(TopicConstants.GAME_CREATED_TOPIC, gameModel))
+                .map(bool -> gameModel);
+        return gameModel;
     }
 
     @Override

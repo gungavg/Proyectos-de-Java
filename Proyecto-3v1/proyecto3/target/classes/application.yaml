@@ -3,19 +3,19 @@ spring:
     gateway:
       routes:
         - id: auth-route
-          uri: http://localhost:8086
+          uri: http://localhost:8080
           predicates:
             - Path=/v1/auth/**
-        - id: users-route
+        - id: user-route
           uri: http://localhost:8081
           predicates:
             - Path=/v1/user/**
           filters:
             - AuthenticationFilter
-        - id: game-route
-          uri: http://localhost:8082
+        - id: games-route
+          uri: https://localhost:8082
           predicates:
-            - Path=/v1/game/**
+            - Path=/v1/games/**
           filters:
             - AuthenticationFilter
   endpoints:
@@ -29,6 +29,3 @@ spring:
       enabled: true
 server:
   port: 8083
-
-
-
