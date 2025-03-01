@@ -6,8 +6,8 @@ spring:
       repositories:
         enabled: true
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/Proyecto3
-    username: postgres
+    url: r2dbc:postgresql://localhost:5432/franherran
+    username: franherran
     password : 1234
   cloud:
     function:
@@ -15,11 +15,11 @@ spring:
     stream:
       default-binder: kafka_default
       bindings:
-        gameBinding-in-0:
+        gameCreatedBinding-in-0:
           destination: event.game-created
           binder: kafka_default
-          useNaiveDecoding: true
-        gameBinding-out-0:
+          useNativeDecoding: true
+        gameCreatedBinding-out-0:
           destination: event.game-eligible
           binder: kafka_default
           useNativeDecoding: true
@@ -39,9 +39,9 @@ spring:
                       producer:
                         compressionType: gzip
                         configuration:
-                          max.request.size: 10000
+                          max.request.size: 100000
                     binder:
-                      autoAddPartition: true
+                      autoAddPartitions: true
                       autoCreateTopics: true
                       requiredAcks: -1
                       minPartitionCount: 3

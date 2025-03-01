@@ -8,7 +8,6 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class GameEligibleServiceImpl implements GameEligibleService {
-
     @Override
     public Mono<GameEligibleEvent> eligibilityGame(GameCreatedEvent gameCreatedEvent) {
         return Mono.just(gameCreatedEvent)

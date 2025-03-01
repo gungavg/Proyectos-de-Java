@@ -2,8 +2,8 @@ server:
   port: 8082
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/Proyecto3
-    username: postgres
+    url: jdbc:postgresql://localhost:5432/franherran
+    username: franherran
     password: 1234
   jpa:
     hibernate:
@@ -14,7 +14,7 @@ spring:
     stream:
       default-binder: kafka_default
       bindings:
-        gameBinding-out-0:
+        gameCreatedBinding-out-0:
           destination: event.game-created
           binder: kafka_default
           useNativeDecoding: true
@@ -34,9 +34,9 @@ spring:
                       producer:
                         compressionType: gzip
                         configuration:
-                          max.request.size: 10000
+                          max.request.size: 100000
                     binder:
-                      autoAddPartition: true
+                      autoAddPartitions: true
                       autoCreateTopics: true
                       requiredAcks: -1
                       minPartitionCount: 3

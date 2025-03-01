@@ -4,8 +4,12 @@ import com.eligibility_microservice.eligibility_microservice.common.GameCreatedE
 import com.eligibility_microservice.eligibility_microservice.common.GameEligibleEvent;
 import com.eligibility_microservice.eligibility_microservice.services.GameEligibleService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
+
+import java.util.logging.Logger;
+
 
 @Component
 @Slf4j
@@ -15,14 +19,14 @@ public class EligibilityGameProcessor {
     public EligibilityGameProcessor(GameEligibleService gameEligibleService) {
         this.gameEligibleService = gameEligibleService;
     }
-    public Flux<GameEligibleEvent> process (Flux<GameCreatedEvent> gameCreatedEventFlux){
-        return gameCreatedEventFlux.doOnNext(given -> log.info("Entry event : {}", given))
+
+    public Flux<GameEligibleEvent> process(Flux<GameCreatedEvent> gameCreatedEventFlux) {
+        return gameCreatedEventFlux.doOnNext(given -> log.info("Entry event: {}", given))
                 .flatMap(gameEligibleService::eligibilityGame)
                 .onErrorContinue(this::handleError);
     }
 
-    private void handleError(Throwable throwable, Object object ) {
+    private void handleError(Throwable throwable, Object object) {
         log.error("Error processing event: {}", object, throwable);
     }
-
 }
